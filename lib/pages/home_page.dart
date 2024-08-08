@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:seat_scheduler_mobile/models/login_model.dart';
 import 'package:seat_scheduler_mobile/repositories/login_repository.dart';
 import 'package:seat_scheduler_mobile/repositories/login_repository_impl.dart';
@@ -80,8 +81,10 @@ class _HomePageState extends State<HomePage> {
                       setState(() {
                         loading = false;
                       });
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text("Email ou senha invalida")));
+                      Fluttertoast.showToast(
+                          msg: "Email ou senha invalida",
+                          gravity: ToastGravity.TOP,
+                          fontSize: 18);
                     }
                   }
                 },
