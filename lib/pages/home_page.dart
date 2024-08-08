@@ -25,16 +25,23 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Fazer Login'),
       ),
       body: SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
         child: Form(
           key: formKey,
           child: Column(
             children: [
               TextFormField(
-                validator: (value) {
-                  return (value == null || value.isEmpty)
-                      ? "Email obrigatorio"
-                      : null;
-                },
+                  validator: (value) {
+                    return (value == null || value.isEmpty)
+                        ? "Email obrigatorio"
+                        : null;
+                  },
+                  decoration: InputDecoration(
+                      labelText: 'Email',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.email))),
+              const SizedBox(
+                height: 16,
               ),
               TextFormField(
                 validator: (value) {
@@ -42,12 +49,25 @@ class _HomePageState extends State<HomePage> {
                       ? "Senha obrigatorio"
                       : null;
                 },
+                decoration: InputDecoration(
+                    labelText: 'Senha',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.lock)),
+                obscureText: true,
+              ),
+              SizedBox(
+                height: 16,
               ),
               ElevatedButton(
-                  onPressed: () {
-                    final valid = formKey.currentState?.validate() ?? false;
-                  },
-                  child: const Text("Login"))
+                onPressed: () {
+                  final valid = formKey.currentState?.validate() ?? false;
+                },
+                child: const Text("Login"),
+                style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    textStyle:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              ),
             ],
           ),
         ),
