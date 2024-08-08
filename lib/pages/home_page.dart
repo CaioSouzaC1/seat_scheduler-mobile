@@ -16,7 +16,10 @@ class _HomePageState extends State<HomePage> {
   final LoginRepository loginRepository = LoginRepositoryImpl();
   LoginModel? loginModel;
 
+  bool loading = false;
   final formKey = GlobalKey<FormState>();
+  final emailEC = TextEditingController();
+  final passwordEC = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +34,13 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               TextFormField(
+                  controller: emailEC,
                   validator: (value) {
                     return (value == null || value.isEmpty)
                         ? "Email obrigatorio"
                         : null;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: 'Email',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.email))),
@@ -44,30 +48,52 @@ class _HomePageState extends State<HomePage> {
                 height: 16,
               ),
               TextFormField(
+                controller: passwordEC,
                 validator: (value) {
                   return (value == null || value.isEmpty)
                       ? "Senha obrigatorio"
                       : null;
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: 'Senha',
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.lock)),
                 obscureText: true,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   final valid = formKey.currentState?.validate() ?? false;
+                  if (valid) {
+                    try {
+                      setState(() {
+                        loading = true;
+                      });
+                      final result = await loginRepository.makeLogin(
+                          emailEC.text, passwordEC.text);
+                      setState(() {
+                        loading = false;
+                      });
+                    } catch (e) {
+                      setState(() {
+                        loading = false;
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("Email ou senha invalida")));
+                    }
+                  }
                 },
                 child: const Text("Login"),
                 style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                    textStyle:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 16),
+                    textStyle: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.bold)),
               ),
+              Visibility(
+                  visible: loading, child: const CircularProgressIndicator())
             ],
           ),
         ),
