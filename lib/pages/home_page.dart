@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:seat_scheduler_mobile/models/login_model.dart';
 import 'package:seat_scheduler_mobile/repositories/login_repository.dart';
@@ -14,6 +16,8 @@ class _HomePageState extends State<HomePage> {
   final LoginRepository loginRepository = LoginRepositoryImpl();
   LoginModel? loginModel;
 
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +26,28 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Form(
+          key: formKey,
           child: Column(
             children: [
-              TextFormField(),
-              ElevatedButton(onPressed: () {}, child: const Text("Login"))
+              TextFormField(
+                validator: (value) {
+                  return (value == null || value.isEmpty)
+                      ? "Email obrigatorio"
+                      : null;
+                },
+              ),
+              TextFormField(
+                validator: (value) {
+                  return (value == null || value.isEmpty)
+                      ? "Senha obrigatorio"
+                      : null;
+                },
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    final valid = formKey.currentState?.validate() ?? false;
+                  },
+                  child: const Text("Login"))
             ],
           ),
         ),
