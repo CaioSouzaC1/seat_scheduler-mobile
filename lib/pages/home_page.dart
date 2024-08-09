@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:seat_scheduler_mobile/models/login_model.dart';
@@ -26,10 +24,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fazer Login'),
-      ),
+          backgroundColor: Colors.black87,
+          title: const Center(
+              child: Text(
+            'Fazer Login',
+            style: TextStyle(color: Colors.white),
+          ))),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: formKey,
           child: Column(
@@ -76,6 +78,10 @@ class _HomePageState extends State<HomePage> {
                           emailEC.text, passwordEC.text);
                       setState(() {
                         loading = false;
+                        Fluttertoast.showToast(
+                            msg: "Logado",
+                            gravity: ToastGravity.TOP,
+                            fontSize: 18);
                       });
                     } catch (e) {
                       setState(() {
@@ -88,12 +94,12 @@ class _HomePageState extends State<HomePage> {
                     }
                   }
                 },
-                child: const Text("Login"),
                 style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 32, vertical: 16),
                     textStyle: const TextStyle(
                         fontSize: 14, fontWeight: FontWeight.bold)),
+                child: const Text("Login"),
               ),
               Visibility(
                   visible: loading, child: const CircularProgressIndicator())
