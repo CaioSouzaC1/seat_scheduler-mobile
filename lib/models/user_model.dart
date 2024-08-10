@@ -1,17 +1,19 @@
 import 'dart:convert';
 
-import 'package:seat_scheduler_mobile/models/address_model.dart';
+import 'address_model.dart';
+import 'company_model.dart';
 
 class UserModel {
-  final String id;
-  final String name;
-  final String phone;
-  final String email;
-  final String lastLogin;
-  final int loginCount;
-  final AddressModel address;
-  final String createdAt;
-  final String updatedAt;
+  final String? id;
+  final String? name;
+  final String? phone;
+  final String? email;
+  final String? lastLogin;
+  final int? loginCount;
+  final AddressModel? address;
+  final CompanyModel? company;
+  final String? createdAt;
+  final String? updatedAt;
 
   UserModel({
     required this.id,
@@ -20,7 +22,8 @@ class UserModel {
     required this.email,
     required this.lastLogin,
     required this.loginCount,
-    required this.address,
+    this.address,
+    this.company,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -33,23 +36,30 @@ class UserModel {
       'email': email,
       'lastLogin': lastLogin,
       'loginCount': loginCount,
-      'address': address,
       'createdAt': createdAt,
-      'updatedAt': updatedAt
+      'updatedAt': updatedAt,
+      'address': address?.toMap(),
+      'company': company?.toMap(),
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-        id: map["id"],
-        name: map["name"],
-        phone: map["phone"],
-        email: map["email"],
-        lastLogin: map["lastLogin"],
-        loginCount: map["loginCount"],
-        address: map["loginCount"],
-        createdAt: map["createdAt"],
-        updatedAt: map["updatedAt"]);
+      id: map["id"],
+      name: map["name"],
+      phone: map["phone"],
+      email: map["email"],
+      lastLogin: map["lastLogin"],
+      loginCount: map["loginCount"],
+      createdAt: map["createdAt"],
+      updatedAt: map["updatedAt"],
+      address: (map['address'] != null)
+          ? AddressModel.fromMap(map["address"])
+          : null,
+      company: (map['company'] != null)
+          ? CompanyModel.fromMap(map["company"])
+          : null,
+    );
   }
 
   factory UserModel.fromJson(String source) =>

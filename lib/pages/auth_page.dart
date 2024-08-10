@@ -4,14 +4,14 @@ import 'package:seat_scheduler_mobile/models/login_model.dart';
 import 'package:seat_scheduler_mobile/repositories/login_repository.dart';
 import 'package:seat_scheduler_mobile/repositories/login_repository_impl.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class AuthPage extends StatefulWidget {
+  const AuthPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<AuthPage> createState() => _AuthPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _AuthPageState extends State<AuthPage> {
   final LoginRepository loginRepository = LoginRepositoryImpl();
   LoginModel? loginModel;
 
@@ -75,8 +75,11 @@ class _HomePageState extends State<HomePage> {
                         loading = true;
                       });
                       final result = await loginRepository.makeLogin(
-                          emailEC.text, passwordEC.text);
+                          login: LoginModel(
+                              email: emailEC.text, password: passwordEC.text));
+
                       setState(() {
+                        print(result.token);
                         loading = false;
                         Fluttertoast.showToast(
                             msg: "Logado",

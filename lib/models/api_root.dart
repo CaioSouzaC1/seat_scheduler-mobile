@@ -1,25 +1,21 @@
-import 'dart:convert';
-
 class ApiRoot<T> {
   final bool error;
   final String message;
   final T data;
+  final String? token;
 
-  ApiRoot({
-    required this.error,
-    required this.message,
-    required this.data,
-  });
+  ApiRoot(
+      {required this.error,
+      required this.message,
+      required this.data,
+      this.token});
 
-  Map<String, dynamic> toMap() {
-    return {'id': error, 'message': message, 'data': data};
-  }
-
-  factory ApiRoot.fromMap(Map<String, dynamic> map) {
+  factory ApiRoot.fromMap(
+      Map<String, dynamic> map, T Function(Map<String, dynamic>) fromMap) {
     return ApiRoot(
-        error: map["error"], message: map["message"], data: map["data"]);
+        error: map["error"],
+        message: map["message"],
+        data: fromMap(map['data']),
+        token: map['data']['token'] ?? '');
   }
-
-  factory ApiRoot.fromJson(String source) =>
-      ApiRoot.fromMap(json.decode(source));
 }
