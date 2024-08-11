@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:seat_scheduler_mobile/models/login_model.dart';
+import 'package:seat_scheduler_mobile/pages/home_page.dart';
+import 'package:seat_scheduler_mobile/repositories/local_storage_repository.dart';
+import 'package:seat_scheduler_mobile/repositories/local_storage_repository_impl.dart';
 import 'package:seat_scheduler_mobile/repositories/login_repository.dart';
 import 'package:seat_scheduler_mobile/repositories/login_repository_impl.dart';
 
@@ -13,12 +16,22 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   final LoginRepository loginRepository = LoginRepositoryImpl();
+  final LocalStorageRepository localStorageRepository =
+      LocalStorageRepositoryImpl();
+
   LoginModel? loginModel;
 
   bool loading = false;
   final formKey = GlobalKey<FormState>();
   final emailEC = TextEditingController();
   final passwordEC = TextEditingController();
+
+  @override
+  dispose() {
+    emailEC.dispose();
+    passwordEC.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,12 +92,18 @@ class _AuthPageState extends State<AuthPage> {
                               email: emailEC.text, password: passwordEC.text));
 
                       setState(() {
-                        print(result.token);
                         loading = false;
+                        localStorageRepository
+                            .setTokenInLocalStorage(result.token as String);
+
                         Fluttertoast.showToast(
                             msg: "Logado",
                             gravity: ToastGravity.TOP,
                             fontSize: 18);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()));
                       });
                     } catch (e) {
                       setState(() {

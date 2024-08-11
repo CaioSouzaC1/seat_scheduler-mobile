@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seat_scheduler_mobile/pages/auth_page.dart';
+import 'package:seat_scheduler_mobile/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const AuthPage(),
+      routes: {
+        '/login': (context) => const AuthPage(),
+        '/home': (context) => const HomePage()
+      },
     );
   }
 }
