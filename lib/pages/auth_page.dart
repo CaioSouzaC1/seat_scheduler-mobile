@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:seat_scheduler_mobile/models/login_model.dart';
 import 'package:seat_scheduler_mobile/models/user_model.dart';
+import 'package:seat_scheduler_mobile/pages/create_account_page.dart';
 import 'package:seat_scheduler_mobile/repositories/local_storage_repository.dart';
 import 'package:seat_scheduler_mobile/repositories/local_storage_repository_impl.dart';
 import 'package:seat_scheduler_mobile/repositories/login_repository.dart';
@@ -128,7 +129,15 @@ class _AuthPageState extends State<AuthPage> {
                 child: const Text("Login"),
               ),
               Visibility(
-                  visible: loading, child: const CircularProgressIndicator())
+                  visible: loading, child: const CircularProgressIndicator()),
+              ElevatedButton(
+                  onPressed: () async {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CreateAccountPage()));
+                  },
+                  child: const Text("Criar conta"))
             ],
           ),
         ),
