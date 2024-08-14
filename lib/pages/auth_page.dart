@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:seat_scheduler_mobile/models/login_model.dart';
-import 'package:seat_scheduler_mobile/pages/home_page.dart';
+import 'package:seat_scheduler_mobile/models/user_model.dart';
 import 'package:seat_scheduler_mobile/repositories/local_storage_repository.dart';
 import 'package:seat_scheduler_mobile/repositories/local_storage_repository_impl.dart';
 import 'package:seat_scheduler_mobile/repositories/login_repository.dart';
@@ -31,6 +31,14 @@ class _AuthPageState extends State<AuthPage> {
     emailEC.dispose();
     passwordEC.dispose();
     super.dispose();
+  }
+
+  setTokenInStorage(String token) {
+    localStorageRepository.setTokenInLocalStorage(token);
+  }
+
+  moveToHomePage(UserModel user) {
+    Navigator.of(context).pushNamed('/home', arguments: user);
   }
 
   @override
@@ -93,17 +101,13 @@ class _AuthPageState extends State<AuthPage> {
 
                       setState(() {
                         loading = false;
-                        localStorageRepository
-                            .setTokenInLocalStorage(result.token as String);
+                        setTokenInStorage(result.token as String);
+                        moveToHomePage(result.data);
 
                         Fluttertoast.showToast(
                             msg: "Logado",
                             gravity: ToastGravity.TOP,
                             fontSize: 18);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()));
                       });
                     } catch (e) {
                       setState(() {

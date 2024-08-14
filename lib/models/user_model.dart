@@ -4,16 +4,16 @@ import 'address_model.dart';
 import 'company_model.dart';
 
 class UserModel {
-  final String? id;
-  final String? name;
-  final String? phone;
-  final String? email;
-  final String? lastLogin;
-  final int? loginCount;
-  final AddressModel? address;
+  final String id;
+  final String name;
+  final String phone;
+  final String email;
+  final String lastLogin;
+  final int loginCount;
+  final AddressModel address;
   final CompanyModel? company;
-  final String? createdAt;
-  final String? updatedAt;
+  final String createdAt;
+  final String updatedAt;
 
   UserModel({
     required this.id,
@@ -22,7 +22,7 @@ class UserModel {
     required this.email,
     required this.lastLogin,
     required this.loginCount,
-    this.address,
+    required this.address,
     this.company,
     required this.createdAt,
     required this.updatedAt,
@@ -38,7 +38,7 @@ class UserModel {
       'loginCount': loginCount,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
-      'address': address?.toMap(),
+      'address': address.toMap(),
       'company': company?.toMap(),
     };
   }
@@ -53,9 +53,7 @@ class UserModel {
       loginCount: map["loginCount"],
       createdAt: map["createdAt"],
       updatedAt: map["updatedAt"],
-      address: (map['address'] != null)
-          ? AddressModel.fromMap(map["address"])
-          : null,
+      address: AddressModel.fromMap(map["address"]),
       company: (map['company'] != null)
           ? CompanyModel.fromMap(map["company"])
           : null,
