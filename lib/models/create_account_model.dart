@@ -1,18 +1,18 @@
 import 'dart:convert';
 
 class CreateAccountModel {
-  final String cep;
-  final String city;
-  final String complement;
-  final String country;
-  final String email;
   final String name;
-  final String neighborhood;
-  final String number;
+  final String email;
   final String password;
   final String phone;
-  final String state;
+  final String cep;
+  final String number;
+  final String city;
   final String street;
+  final String state;
+  final String country;
+  final String neighborhood;
+  final String complement;
 
   CreateAccountModel(
       {required this.cep,
