@@ -135,7 +135,7 @@ class _AuthPageState extends State<AuthPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CreateAccountPage()));
+                            builder: (context) => const CreateAccountPage()));
                   },
                   child: const Text("Criar conta"))
             ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:seat_scheduler_mobile/pages/auth_page.dart';
 import 'package:seat_scheduler_mobile/routes/route_pages.dart';
 
 void main() {
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const AuthPage(),
+        initialRoute: "/auth",
         onGenerateRoute: RoutePages.generateRoute);
   }
 }
