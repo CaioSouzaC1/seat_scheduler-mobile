@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:seat_scheduler_mobile/models/user_model.dart';
 import 'package:seat_scheduler_mobile/pages/auth_page.dart';
 import 'package:seat_scheduler_mobile/pages/create_account_page.dart';
 import 'package:seat_scheduler_mobile/pages/home_page.dart';
@@ -10,9 +9,7 @@ class RoutePages {
 
     switch (settings.name) {
       case '/home':
-        if (args is UserModel) {
-          return MaterialPageRoute(builder: (_) => HomePage(user: args));
-        }
+        return MaterialPageRoute(builder: (_) => const HomePage());
       case '/auth':
         return MaterialPageRoute(builder: (_) => const AuthPage());
       case "/create_accout":

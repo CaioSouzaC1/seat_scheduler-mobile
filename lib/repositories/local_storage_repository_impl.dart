@@ -1,21 +1,17 @@
+import 'package:get_storage/get_storage.dart';
 import 'package:seat_scheduler_mobile/repositories/local_storage_repository.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageRepositoryImpl extends LocalStorageRepository {
   @override
   Future<String> getTokenFromLocalStorage() async {
-    final SharedPreferences localStorage =
-        await SharedPreferences.getInstance();
-
-    final token = localStorage.getString("token");
-
-    return token!;
+    final box = GetStorage();
+    return box.read("token");
   }
 
   @override
   Future<void> setTokenInLocalStorage(String token) async {
-    final SharedPreferences localStorage =
-        await SharedPreferences.getInstance();
-    localStorage.setString("token", token);
+    final box = GetStorage();
+
+    box.write("token", token);
   }
 }

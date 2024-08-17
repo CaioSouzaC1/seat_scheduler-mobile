@@ -39,7 +39,7 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   moveToHomePage(UserModel user) {
-    Navigator.of(context).pushNamed('/home', arguments: user);
+    Navigator.of(context).pushNamed('/home');
   }
 
   @override
