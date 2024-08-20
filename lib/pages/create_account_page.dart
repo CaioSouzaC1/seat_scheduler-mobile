@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:seat_scheduler_mobile/models/create_account_model.dart';
+import 'package:seat_scheduler_mobile/models/user_model.dart';
 import 'package:seat_scheduler_mobile/repositories/create_account_repository.dart';
 import 'package:seat_scheduler_mobile/repositories/create_account_repository_impl.dart';
+import 'package:seat_scheduler_mobile/repositories/local_storage_repository.dart';
+import 'package:seat_scheduler_mobile/repositories/local_storage_repository_impl.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
@@ -13,9 +17,12 @@ class CreateAccountPage extends StatefulWidget {
 class _CreateAccountPage extends State<CreateAccountPage> {
   final CreateAccountRepository createAccountRepository =
       CreateAccountRepositoryImpl();
+  final LocalStorageRepository localStorageRepository =
+      LocalStorageRepositoryImpl();
 
   CreateAccountModel? createAccountModel;
   bool loading = false;
+  int step = 1;
   final formKey = GlobalKey<FormState>();
   final cepEC = TextEditingController();
   final cityEC = TextEditingController();
@@ -29,6 +36,31 @@ class _CreateAccountPage extends State<CreateAccountPage> {
   final phoneEC = TextEditingController();
   final stateEC = TextEditingController();
   final streetEC = TextEditingController();
+
+  @override
+  void dispose() {
+    cepEC.dispose();
+    cityEC.dispose();
+    complementEC.dispose();
+    countryEC.dispose();
+    emailEC.dispose();
+    nameEC.dispose();
+    neighborhoodEC.dispose();
+    numberEC.dispose();
+    passwordEC.dispose();
+    phoneEC.dispose();
+    stateEC.dispose();
+    streetEC.dispose();
+    super.dispose();
+  }
+
+  setTokenInStorage(String token) {
+    localStorageRepository.setTokenInLocalStorage(token);
+  }
+
+  moveToHomePage(UserModel user) {
+    Navigator.of(context).pushNamed('/home', arguments: user);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +78,32 @@ class _CreateAccountPage extends State<CreateAccountPage> {
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: formKey,
-          child: Column(
-            children: [
-              TextFormField(
+          child: Center(
+            child: Column(
+              children: [
+                Visibility(
+                  visible: (step == 1),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Etapa Inicial",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          const Text(
+                            "Dados cadastrais",
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal, fontSize: 18),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      TextFormField(
                 controller: nameEC,
                 validator: (value) {
                   return (value == null || value.isEmpty)
@@ -112,8 +167,33 @@ class _CreateAccountPage extends State<CreateAccountPage> {
               const SizedBox(
                 height: 16,
               ),
-              Row(
-                children: [
+                    ],
+                  ),
+                ),
+                Visibility(
+                  visible: (step == 2),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            "Etapa Finais",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          const Text(
+                            "Dados enderecais",
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal, fontSize: 18),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Row(
+                        children: [
                   Expanded(
                     child: TextFormField(
                       controller: cepEC,
@@ -244,14 +324,177 @@ class _CreateAccountPage extends State<CreateAccountPage> {
                 controller: complementEC,
                 decoration: const InputDecoration(
                   labelText: 'Complemento',
-                  border: OutlineInputBorder(),
+                          border: OutlineInputBorder(), 
                   prefixIcon: Icon(Icons.document_scanner_outlined),
                 ),
               ),
               const SizedBox(
                 height: 16,
               ),
-            ],
+                    ],
+                  ),
+                ),
+                Column(
+                  children: [
+                    Visibility(
+                        visible: (step == 1),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  setState(() {
+                                    step = 2;
+                                  });
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.grey[300],
+                                  elevation: 3,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'Avançar',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    Icon(
+                                      Icons.arrow_circle_right_outlined,
+                                      color: Colors.black,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        )),
+                    Visibility(
+                      visible: (step == 2),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () async {
+                                setState(() {
+                                  step = 1;
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.grey[300],
+                                elevation: 3,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8)),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'Voltar',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_circle_left_outlined,
+                                    color: Colors.black,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10), // Espaço entre os botões
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () async {
+                                final valid =
+                                    formKey.currentState?.validate() ?? false;
+                                if (!valid) return;
+
+                                try {
+                                  setState(() {
+                                    loading = true;
+                                  });
+
+                                  final result = await createAccountRepository
+                                      .createAccount(
+                                    createAccount: CreateAccountModel(
+                                      cep: cepEC.text,
+                                      city: cityEC.text,
+                                      complement: complementEC.text,
+                                      country: countryEC.text,
+                                      email: emailEC.text,
+                                      name: nameEC.text,
+                                      neighborhood: neighborhoodEC.text,
+                                      number: numberEC.text,
+                                      password: passwordEC.text,
+                                      phone: phoneEC.text,
+                                      state: stateEC.text,
+                                      street: streetEC.text,
+                                    ),
+                                  );
+
+                                  setState(() {
+                                    loading = false;
+                                    setTokenInStorage(result.data.token);
+                                    moveToHomePage(result.data.user);
+                                    Fluttertoast.showToast(
+                                      msg: "Conta criada com sucesso",
+                                      gravity: ToastGravity.TOP,
+                                      fontSize: 18,
+                                    );
+                                  });
+                                } catch (e) {
+                                  print(e);
+                                  setState(() {
+                                    loading = false;
+                                  });
+                                  Fluttertoast.showToast(
+                                    msg: "Erro ao criar conta.",
+                                    gravity: ToastGravity.TOP,
+                                    fontSize: 18,
+                                  );
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.green[700],
+                                shadowColor: Colors.green,
+                                elevation: 3,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8)),
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'Criar conta',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Icon(
+                                    Icons.person_pin_rounded,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Visibility(
+                    visible: loading, child: const CircularProgressIndicator()),
+              ],
+            ),
           ),
         ),
       ),
