@@ -9,6 +9,7 @@ class CreateAccountRepositoryImpl implements CreateAccountRepository {
   Future<ApiRoot<CreateAccountResponse>> createAccount(
       {required CreateAccountModel createAccount}) async {
     try {
+      final dio = await createDio();
       final result =
           await dio.post('/users/client', data: createAccount.toMap());
 

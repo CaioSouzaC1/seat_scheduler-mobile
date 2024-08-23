@@ -3,7 +3,7 @@ import 'package:seat_scheduler_mobile/repositories/local_storage_repository.dart
 
 class LocalStorageRepositoryImpl extends LocalStorageRepository {
   @override
-  Future<String> getTokenFromLocalStorage() async {
+  Future<String?> getTokenFromLocalStorage() async {
     final box = GetStorage();
     return box.read("token");
   }

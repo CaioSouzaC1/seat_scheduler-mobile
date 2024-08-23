@@ -3,9 +3,11 @@ import 'package:seat_scheduler_mobile/pages/auth_page.dart';
 import 'package:seat_scheduler_mobile/pages/create_account_page.dart';
 import 'package:seat_scheduler_mobile/pages/home_page.dart';
 
+import '../pages/perfil_page.dart';
+
 class RoutePages {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    final args = settings.arguments;
+    //final args = settings.arguments;
 
     switch (settings.name) {
       case '/home':
@@ -14,6 +16,8 @@ class RoutePages {
         return MaterialPageRoute(builder: (_) => const AuthPage());
       case "/create_accout":
         return MaterialPageRoute(builder: (_) => const CreateAccountPage());
+      case "/perfil":
+        return MaterialPageRoute(builder: (_) => const PerfilPage());
     }
 
     return MaterialPageRoute(builder: (context) => const Error());

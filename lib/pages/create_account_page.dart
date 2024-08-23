@@ -450,7 +450,6 @@ class _CreateAccountPage extends State<CreateAccountPage> {
                                     );
                                   });
                                 } catch (e) {
-                                  print(e);
                                   setState(() {
                                     loading = false;
                                   });

@@ -12,6 +12,8 @@ class LoginRepositoryImpl implements LoginRepository {
   @override
   Future<ApiRoot<UserModel>> makeLogin({required LoginModel login}) async {
     try {
+      final dio = await createDio();
+
       final result = await dio.post('/login', data: login.toMap());
 
       return ApiRoot<UserModel>.fromMap(
