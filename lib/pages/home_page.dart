@@ -8,6 +8,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  moveToStore() {
+    Navigator.of(context).pushNamed(
+      '/store',
+    );
+  }
+
   moveToPerfil() {
     Navigator.of(context).pushNamed('/perfil');
   }
@@ -17,15 +23,26 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Main"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                moveToPerfil();
+              },
+              icon: const Icon(Icons.person))
+        ],
       ),
       body: Column(
         children: [
           Center(
-            child: ElevatedButton(
-              onPressed: () {
-                moveToPerfil();
-              },
-              child: Text("Perfil"),
+            child: Column(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    moveToStore();
+                  },
+                  child: const Text("Lojas"),
+                ),
+              ],
             ),
           ),
         ],
