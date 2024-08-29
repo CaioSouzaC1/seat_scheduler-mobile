@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:seat_scheduler_mobile/global/main_screen.dart';
 import 'package:seat_scheduler_mobile/pages/auth_page.dart';
-import 'package:seat_scheduler_mobile/pages/home_page.dart';
 import 'package:seat_scheduler_mobile/routes/route_pages.dart';
 
 void main() async {
@@ -26,10 +25,32 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          scaffoldBackgroundColor: Color.fromRGBO(23, 23, 23, 1),
+          appBarTheme: AppBarTheme(
+            backgroundColor: Color.fromRGBO(23, 23, 23, 1),
+            titleTextStyle: TextStyle(
+              color: Colors.blue[50],
+            ),
+            iconTheme: IconThemeData(
+              color: Colors.blue[50],
+            ),
+          ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
+          textTheme: TextTheme(
+            bodyLarge: TextStyle(
+              color: Colors.blue[50],
+            ),
+            bodyMedium: TextStyle(
+              color: Colors.blue[50],
+            ),
+            bodySmall: TextStyle(
+              color: Colors.blue[50],
+            ),
+          ),
           useMaterial3: true,
         ),
-        home: isToken ? const HomePage() : const AuthPage(),
+        
+        home: isToken ? const MainScreen() : const AuthPage(),
         onGenerateRoute: RoutePages.generateRoute);
   }
 }
