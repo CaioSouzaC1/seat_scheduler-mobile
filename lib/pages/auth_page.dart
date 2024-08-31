@@ -68,7 +68,9 @@ class _AuthPageState extends State<AuthPage> {
                   decoration: const InputDecoration(
                       labelText: 'Email',
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.email))),
+                  prefixIcon: Icon(Icons.email),
+                ),
+              ),
               const SizedBox(
                 height: 16,
               ),
@@ -88,7 +90,11 @@ class _AuthPageState extends State<AuthPage> {
               const SizedBox(
                 height: 16,
               ),
-              ElevatedButton(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
                 onPressed: () async {
                   final valid = formKey.currentState?.validate() ?? false;
                   if (valid) {
@@ -121,15 +127,24 @@ class _AuthPageState extends State<AuthPage> {
                     }
                   }
                 },
+                
                 style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32, vertical: 16),
+                  
+                        padding: const EdgeInsets.all(16),
                     textStyle: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.bold)),
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                        ),
+                      ),
                 child: const Text("Login"),
-              ),
-              Visibility(
-                  visible: loading, child: const CircularProgressIndicator()),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: 
               ElevatedButton(
                   onPressed: () async {
                     Navigator.push(
@@ -137,7 +152,23 @@ class _AuthPageState extends State<AuthPage> {
                         MaterialPageRoute(
                             builder: (context) => const CreateAccountPage()));
                   },
-                  child: const Text("Criar conta"))
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.all(16),
+                        textStyle: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                        ),
+                      ),
+                      child: const Text("Criar conta"),
+                    ),
+                  )
+                ],
+              ),
+              Visibility(
+                  visible: loading, child: const CircularProgressIndicator())
             ],
           ),
         ),

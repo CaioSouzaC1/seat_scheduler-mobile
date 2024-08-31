@@ -47,6 +47,19 @@ class MyApp extends StatelessWidget {
               color: Colors.blue[50],
             ),
           ),
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue[50]!),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue[50]!),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue[50]!, width: 2.0),
+            ),
+            labelStyle: TextStyle(color: Colors.blue[50]!),
+            hintStyle: TextStyle(color: Colors.blue[50]!.withOpacity(0.6)),
+          ),
           useMaterial3: true,
         ),
         
