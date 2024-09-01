@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:seat_scheduler_mobile/repositories/local_storage_repository.dart';
+import 'package:seat_scheduler_mobile/repositories/local_storage_repository_impl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -8,14 +10,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final LocalStorageRepository localStorageRepository =
+      LocalStorageRepositoryImpl();
+
   moveToStore() {
     Navigator.of(context).pushNamed(
       '/store',
     );
   }
 
-  moveToPerfil() {
-    Navigator.of(context).pushNamed('/perfil');
+  signOut() {
+    localStorageRepository.deleteTokenFromLocalStorage();
+    Navigator.of(context).pushReplacementNamed('/auth');
   }
 
   @override
@@ -26,9 +32,9 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
               onPressed: () {
-                moveToPerfil();
+                signOut();
               },
-              icon: const Icon(Icons.person))
+              icon: const Icon(Icons.logout))
         ],
       ),
       body: Column(

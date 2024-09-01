@@ -13,7 +13,7 @@ class StorePage extends StatefulWidget {
 
 class _StorePageState extends State<StorePage> {
   final StoreRepository storeRepository = StoreRepositoryImpl();
-  StoreModel? _store;
+  List<StoreModel>? _store;
 
   @override
   void initState() {
@@ -24,14 +24,12 @@ class _StorePageState extends State<StorePage> {
   Future<void> _fetchStores() async {
     try {
       final result = await storeRepository.fetchStore();
-      print(result);
+      setState(() {
+        _store = result.data;
+      });
     } catch (e) {
       rethrow;
     }
-  }
-
-  void _moveToStoreShow(String storeId) {
-    // Navigator.of(context).pushNamed('/store', arguments: storeId);
   }
 
   @override
@@ -41,9 +39,15 @@ class _StorePageState extends State<StorePage> {
         title: const Text("Lojas"),
       ),
       body: ListView(
-        children: [
-          CardStore(onTap: _moveToStoreShow),
-        ],
+        children: _store != null
+            ? _store!
+                .map(
+                  (store) => CardStore(
+                    store: store,
+                  ),
+                )
+                .toList()
+            : [const Text("Don't work")],
       ),
     );
   }

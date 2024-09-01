@@ -10,8 +10,8 @@ class UserModel {
   final String email;
   final String lastLogin;
   final int loginCount;
-  final AddressModel address;
-  final CompanyModel? company;
+  AddressModel? address;
+  CompanyModel? company;
   final String createdAt;
   final String updatedAt;
 
@@ -22,7 +22,7 @@ class UserModel {
     required this.email,
     required this.lastLogin,
     required this.loginCount,
-    required this.address,
+    this.address,
     this.company,
     required this.createdAt,
     required this.updatedAt,
@@ -38,8 +38,8 @@ class UserModel {
       'loginCount': loginCount,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
-      'address': address.toMap(),
-      'company': company?.toMap(),
+      'address': address?.toMap() ?? {},
+      'company': company?.toMap() ?? {},
     };
   }
 
@@ -53,9 +53,10 @@ class UserModel {
       loginCount: map["loginCount"],
       createdAt: map["createdAt"],
       updatedAt: map["updatedAt"],
-      address: AddressModel.fromMap(map["address"]),
+      address:
+          map["address"] != null ? AddressModel?.fromMap(map["address"]) : null,
       company: (map['company'] != null)
-          ? CompanyModel.fromMap(map["company"])
+          ? CompanyModel?.fromMap(map["company"])
           : null,
     );
   }

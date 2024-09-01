@@ -10,8 +10,8 @@ class CompanyModel {
   final String userId;
   final String createdAt;
   final String updatedAt;
-  final List<CompanyAttachement>? attachments;
-  final AddressModel address;
+  List<CompanyAttachement>? attachments;
+  AddressModel? address;
 
   CompanyModel(
       {required this.id,
@@ -22,7 +22,7 @@ class CompanyModel {
       required this.createdAt,
       required this.updatedAt,
       this.attachments,
-      required this.address});
+      this.address});
 
   Map<String, dynamic> toMap() {
     return {
@@ -30,12 +30,12 @@ class CompanyModel {
       'name': name,
       'cnpj': cnpj,
       'addressId': addressId,
-      'address': address.toMap(),
+      'address': address?.toMap() ?? {},
       'userId': userId,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
       'attachments':
-          attachments?.map((attachment) => attachment.toMap()).toList(),
+          attachments?.map((attachment) => attachment.toMap()).toList() ?? [],
     };
   }
 
@@ -44,7 +44,9 @@ class CompanyModel {
         id: map['id'],
         name: map['name'],
         cnpj: map['cnpj'],
-        address: AddressModel?.fromMap(map['address']),
+        address: map['address'] != null
+            ? AddressModel.fromMap(map['address'])
+            : null,
         userId: map['userId'],
         addressId: map['addressId'],
         createdAt: map['createdAt'],
