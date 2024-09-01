@@ -32,6 +32,10 @@ class _StorePageState extends State<StorePage> {
     }
   }
 
+  showStore(String id) {
+    Navigator.of(context).pushNamed('/show_store', arguments: id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +48,7 @@ class _StorePageState extends State<StorePage> {
                 .map(
                   (store) => CardStore(
                     store: store,
+                    showStore: showStore,
                   ),
                 )
                 .toList()

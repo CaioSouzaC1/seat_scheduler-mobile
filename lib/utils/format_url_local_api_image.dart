@@ -1,6 +1,6 @@
 String formatUrlLocalApiImage(String? image) {
   if (image == null) {
-    return '';
+    return "https://avatarfiles.alphacoders.com/374/374586.png";
   }
 
   String relativePath = image.replaceFirst('http://0.0.0.0:3333', '');

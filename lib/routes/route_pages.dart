@@ -5,10 +5,11 @@ import 'package:seat_scheduler_mobile/pages/home_page.dart';
 import 'package:seat_scheduler_mobile/pages/store_page.dart';
 
 import '../pages/perfil_page.dart';
+import '../pages/show_store_page.dart';
 
 class RoutePages {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    //final args = settings.arguments;
+    final args = settings.arguments;
 
     switch (settings.name) {
       case '/home':
@@ -21,6 +22,11 @@ class RoutePages {
         return MaterialPageRoute(builder: (_) => const PerfilPage());
       case "/store":
         return MaterialPageRoute(builder: (_) => const StorePage());
+      case "/show_store":
+        if (args is String) {
+          return MaterialPageRoute(
+              builder: (_) => ShowStorePage(storeId: args));
+        }
     }
 
     return MaterialPageRoute(builder: (context) => const Error());
