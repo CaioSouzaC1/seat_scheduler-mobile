@@ -19,7 +19,7 @@ class CardStore extends StatefulWidget {
 class _CardStoreState extends State<CardStore> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         widget.showStore(widget.store.id);
       },

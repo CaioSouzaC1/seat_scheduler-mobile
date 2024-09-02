@@ -52,7 +52,11 @@ class _StorePageState extends State<StorePage> {
                   ),
                 )
                 .toList()
-            : [const Text("Don't work")],
+            : [
+                const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ],
       ),
     );
   }

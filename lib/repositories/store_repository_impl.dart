@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:seat_scheduler_mobile/api/dio_api.dart';
+import 'package:seat_scheduler_mobile/models/api_root.dart';
 import 'package:seat_scheduler_mobile/models/paginate_root.dart';
 import 'package:seat_scheduler_mobile/models/store_model.dart';
 import 'package:seat_scheduler_mobile/repositories/store_repository.dart';
@@ -19,6 +20,22 @@ class StoreRepositoryImpl extends StoreRepository {
     } on DioException catch (e) {
       log(e.message ?? "");
       throw Exception("Erro ao trazer as lojas");
+    }
+  }
+
+  @override
+  Future<ApiRoot<StoreModel>> getStore(String id) async {
+    try {
+      final dio = await createDio();
+
+      final result = await dio.get('/stores/$id');
+
+      return ApiRoot.fromMap(
+        result.data,
+        (data) => StoreModel.fromMap(data),
+      );
+    } on DioException catch (e) {
+      throw Exception(e.message);
     }
   }
 }

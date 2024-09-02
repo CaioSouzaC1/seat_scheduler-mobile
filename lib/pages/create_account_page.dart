@@ -85,15 +85,15 @@ class _CreateAccountPage extends State<CreateAccountPage> {
                   visible: (step == 1),
                   child: Column(
                     children: [
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          const Text(
+                          Text(
                             "Etapa Inicial",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
-                          const Text(
+                          Text(
                             "Dados cadastrais",
                             style: TextStyle(
                                 fontWeight: FontWeight.normal, fontSize: 18),
@@ -104,69 +104,69 @@ class _CreateAccountPage extends State<CreateAccountPage> {
                         height: 16,
                       ),
                       TextFormField(
-                controller: nameEC,
-                validator: (value) {
-                  return (value == null || value.isEmpty)
-                      ? 'Nome obrigatório'
-                      : null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Nome',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.people_alt),
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                controller: emailEC,
-                validator: (value) {
-                  return (value == null || value.isEmpty)
-                      ? "Email obrigatório"
-                      : null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email),
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                controller: passwordEC,
-                validator: (value) {
-                  return (value == null || value.isEmpty)
-                      ? "Senha obrigatorio"
-                      : null;
-                },
-                decoration: const InputDecoration(
-                    labelText: 'Senha',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.lock)),
-                obscureText: true,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                controller: phoneEC,
-                validator: (value) {
-                  return (value == null || value.isEmpty)
-                      ? "Telefone obrigatório"
-                      : null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Telefone',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.smartphone_rounded),
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
+                        controller: nameEC,
+                        validator: (value) {
+                          return (value == null || value.isEmpty)
+                              ? 'Nome obrigatório'
+                              : null;
+                        },
+                        decoration: const InputDecoration(
+                          labelText: 'Nome',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.people_alt),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      TextFormField(
+                        controller: emailEC,
+                        validator: (value) {
+                          return (value == null || value.isEmpty)
+                              ? "Email obrigatório"
+                              : null;
+                        },
+                        decoration: const InputDecoration(
+                          labelText: 'Email',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.email),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      TextFormField(
+                        controller: passwordEC,
+                        validator: (value) {
+                          return (value == null || value.isEmpty)
+                              ? "Senha obrigatorio"
+                              : null;
+                        },
+                        decoration: const InputDecoration(
+                            labelText: 'Senha',
+                            border: OutlineInputBorder(),
+                            prefixIcon: Icon(Icons.lock)),
+                        obscureText: true,
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      TextFormField(
+                        controller: phoneEC,
+                        validator: (value) {
+                          return (value == null || value.isEmpty)
+                              ? "Telefone obrigatório"
+                              : null;
+                        },
+                        decoration: const InputDecoration(
+                          labelText: 'Telefone',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.smartphone_rounded),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
                     ],
                   ),
                 ),
@@ -174,15 +174,15 @@ class _CreateAccountPage extends State<CreateAccountPage> {
                   visible: (step == 2),
                   child: Column(
                     children: [
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          const Text(
+                          Text(
                             "Etapa Finais",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                           ),
-                          const Text(
+                          Text(
                             "Dados enderecais",
                             style: TextStyle(
                                 fontWeight: FontWeight.normal, fontSize: 18),
@@ -194,143 +194,143 @@ class _CreateAccountPage extends State<CreateAccountPage> {
                       ),
                       Row(
                         children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: cepEC,
-                      validator: (value) {
-                        return (value == null || value.isEmpty)
-                            ? "Cep obrigatório"
-                            : null;
-                      },
-                      decoration: const InputDecoration(
-                        labelText: 'Cep',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.pin_drop_rounded),
+                          Expanded(
+                            child: TextFormField(
+                              controller: cepEC,
+                              validator: (value) {
+                                return (value == null || value.isEmpty)
+                                    ? "Cep obrigatório"
+                                    : null;
+                              },
+                              decoration: const InputDecoration(
+                                labelText: 'Cep',
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(Icons.pin_drop_rounded),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 16,
+                          ),
+                          Expanded(
+                            child: TextFormField(
+                              controller: numberEC,
+                              validator: (value) {
+                                return (value == null || value.isEmpty)
+                                    ? "Numero obrigatório"
+                                    : null;
+                              },
+                              decoration: const InputDecoration(
+                                labelText: 'Numero',
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(Icons.onetwothree_rounded),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      controller: numberEC,
-                      validator: (value) {
-                        return (value == null || value.isEmpty)
-                            ? "Numero obrigatório"
-                            : null;
-                      },
-                      decoration: const InputDecoration(
-                        labelText: 'Numero',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.onetwothree_rounded),
+                      const SizedBox(
+                        height: 16,
                       ),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                controller: cityEC,
-                validator: (value) {
-                  return (value == null || value.isEmpty)
-                      ? "Cidade obrigatório"
-                      : null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Cidade',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.location_city_rounded),
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                controller: streetEC,
-                validator: (value) {
-                  return (value == null || value.isEmpty)
-                      ? "Logradouro obrigatório"
-                      : null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Logradouro',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.straighten_outlined),
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: stateEC,
-                      validator: (value) {
-                        return (value == null || value.isEmpty)
-                            ? "Estado obrigatório"
-                            : null;
-                      },
-                      decoration: const InputDecoration(
-                        labelText: 'Estado',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.star_rate_rounded),
+                      TextFormField(
+                        controller: cityEC,
+                        validator: (value) {
+                          return (value == null || value.isEmpty)
+                              ? "Cidade obrigatório"
+                              : null;
+                        },
+                        decoration: const InputDecoration(
+                          labelText: 'Cidade',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.location_city_rounded),
+                        ),
                       ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      controller: countryEC,
-                      validator: (value) {
-                        return (value == null || value.isEmpty)
-                            ? "Pais obrigatório"
-                            : null;
-                      },
-                      decoration: const InputDecoration(
-                        labelText: 'Pais',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.outlined_flag_rounded),
+                      const SizedBox(
+                        height: 16,
                       ),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                controller: neighborhoodEC,
-                validator: (value) {
-                  return (value == null || value.isEmpty)
-                      ? "Bairro obrigatório"
-                      : null;
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Bairro',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.house_sharp),
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                controller: complementEC,
-                decoration: const InputDecoration(
-                  labelText: 'Complemento',
-                          border: OutlineInputBorder(), 
-                  prefixIcon: Icon(Icons.document_scanner_outlined),
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
+                      TextFormField(
+                        controller: streetEC,
+                        validator: (value) {
+                          return (value == null || value.isEmpty)
+                              ? "Logradouro obrigatório"
+                              : null;
+                        },
+                        decoration: const InputDecoration(
+                          labelText: 'Logradouro',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.straighten_outlined),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              controller: stateEC,
+                              validator: (value) {
+                                return (value == null || value.isEmpty)
+                                    ? "Estado obrigatório"
+                                    : null;
+                              },
+                              decoration: const InputDecoration(
+                                labelText: 'Estado',
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(Icons.star_rate_rounded),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 16,
+                          ),
+                          Expanded(
+                            child: TextFormField(
+                              controller: countryEC,
+                              validator: (value) {
+                                return (value == null || value.isEmpty)
+                                    ? "Pais obrigatório"
+                                    : null;
+                              },
+                              decoration: const InputDecoration(
+                                labelText: 'Pais',
+                                border: OutlineInputBorder(),
+                                prefixIcon: Icon(Icons.outlined_flag_rounded),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      TextFormField(
+                        controller: neighborhoodEC,
+                        validator: (value) {
+                          return (value == null || value.isEmpty)
+                              ? "Bairro obrigatório"
+                              : null;
+                        },
+                        decoration: const InputDecoration(
+                          labelText: 'Bairro',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.house_sharp),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      TextFormField(
+                        controller: complementEC,
+                        decoration: const InputDecoration(
+                          labelText: 'Complemento',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.document_scanner_outlined),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
                     ],
                   ),
                 ),
@@ -355,11 +355,11 @@ class _CreateAccountPage extends State<CreateAccountPage> {
                                         BorderRadius.all(Radius.circular(8)),
                                   ),
                                 ),
-                                child: Row(
+                                child: const Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Text(
+                                    Text(
                                       'Avançar',
                                       style: TextStyle(color: Colors.black),
                                     ),
@@ -392,11 +392,11 @@ class _CreateAccountPage extends State<CreateAccountPage> {
                                       BorderRadius.all(Radius.circular(8)),
                                 ),
                               ),
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Voltar',
                                     style: TextStyle(color: Colors.black),
                                   ),
@@ -469,11 +469,11 @@ class _CreateAccountPage extends State<CreateAccountPage> {
                                       BorderRadius.all(Radius.circular(8)),
                                 ),
                               ),
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Criar conta',
                                     style: TextStyle(color: Colors.white),
                                   ),

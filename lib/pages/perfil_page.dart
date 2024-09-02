@@ -31,7 +31,7 @@ class _PerfilPageState extends State<PerfilPage> {
         _formatDate = formatDate(_user!.createdAt);
       });
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
