@@ -30,7 +30,9 @@ class _CardStoreState extends State<CardStore> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.network(
-                formatUrlLocalApiImage(widget.store.attachments?[0].imagePath),
+                formatUrlLocalApiImage(widget.store.attachments != []
+                    ? widget.store.attachments![0].imagePath
+                    : ""),
               ),
               const SizedBox(
                 width: 8,

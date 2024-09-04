@@ -40,7 +40,16 @@ class _StorePageState extends State<StorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Lojas"),
+        title: const Center(
+          child: Text(
+            "Lojas",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
       body: ListView(
         children: _store != null

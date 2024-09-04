@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
       LocalStorageRepositoryImpl();
 
   moveToStore() {
-    Navigator.of(context).pushNamed(
+    Navigator.of(context).pushReplacementNamed(
       '/store',
     );
   }
