@@ -23,4 +23,20 @@ class LoginRepositoryImpl implements LoginRepository {
       throw Exception('Erro ao logar');
     }
   }
+
+  @override
+  Future<bool> checkValidateToken() async {
+    try {
+      final dio = await createDio();
+
+      await dio.get('/checktoken');
+
+      return true;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 401) {
+        return false;
+      }
+      throw Exception(e.message);
+    }
+  }
 }

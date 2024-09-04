@@ -1,3 +1,0 @@
-class ApiRootPaginate<T> {
-  // final
-}

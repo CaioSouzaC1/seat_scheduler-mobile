@@ -2,32 +2,46 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:seat_scheduler_mobile/global/main_screen.dart';
 import 'package:seat_scheduler_mobile/pages/auth_page.dart';
+import 'package:seat_scheduler_mobile/repositories/login_repository.dart';
+import 'package:seat_scheduler_mobile/repositories/login_repository_impl.dart';
 import 'package:seat_scheduler_mobile/routes/route_pages.dart';
 
 void main() async {
   await GetStorage.init();
 
-  runApp(const MyApp());
+  runApp(const Main());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Main extends StatefulWidget {
+  const Main({super.key});
+
+  @override
+  State<Main> createState() => _MainState();
+}
+
+class _MainState extends State<Main> {
+  final box = GetStorage.init();
+  bool isToken = false;
+  final LoginRepository loginRepository = LoginRepositoryImpl();
+
+  @override
+  void initState() {
+    super.initState();
+    validateToken();
+  }
+
+  Future<void> validateToken() async {
+    isToken = await loginRepository.checkValidateToken();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final box = GetStorage();
-    bool isToken = false;
-
-    if (box.read("token") != null) {
-      isToken = true;
-    }
-
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          scaffoldBackgroundColor: Color.fromRGBO(23, 23, 23, 1),
+          scaffoldBackgroundColor: const Color.fromRGBO(23, 23, 23, 1),
           appBarTheme: AppBarTheme(
-            backgroundColor: Color.fromRGBO(23, 23, 23, 1),
+            backgroundColor: const Color.fromRGBO(23, 23, 23, 1),
             titleTextStyle: TextStyle(
               color: Colors.blue[50],
             ),
@@ -62,7 +76,6 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        
         home: isToken ? const MainScreen() : const AuthPage(),
         onGenerateRoute: RoutePages.generateRoute);
   }

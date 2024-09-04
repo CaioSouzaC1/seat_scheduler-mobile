@@ -14,8 +14,8 @@ class _BookingsPageState extends State<BookingsPage> {
       appBar: AppBar(
         title: const Text("Minhas reservas"),
       ),
-      body: Center(
-        child: const Text('Minhas reservas'),
+      body: const Center(
+        child: Text('Minhas reservas'),
       ),
     );
   }

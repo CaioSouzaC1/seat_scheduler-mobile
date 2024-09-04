@@ -2,14 +2,16 @@ import 'dart:convert';
 
 import 'package:seat_scheduler_mobile/models/address_model.dart';
 import 'package:seat_scheduler_mobile/models/company_model.dart';
+import 'package:seat_scheduler_mobile/models/store_attachement_model.dart';
 
 class StoreModel {
   final String id;
   final String name;
   final String phone;
   String? description;
-  final AddressModel address;
-  final CompanyModel company;
+  AddressModel? address;
+  CompanyModel? company;
+  List<StoreAttachement>? attachments;
   final String createdAt;
   final String updatedAt;
 
@@ -18,8 +20,9 @@ class StoreModel {
       required this.name,
       required this.phone,
       this.description,
-      required this.address,
-      required this.company,
+      this.address,
+      this.company,
+      this.attachments,
       required this.createdAt,
       required this.updatedAt});
 
@@ -29,20 +32,30 @@ class StoreModel {
       'name': name,
       'phone': phone,
       'description': description ?? "",
-      'address': address.toMap(),
-      'company': company.toMap(),
+      'address': address?.toMap() ?? {},
+      'company': company?.toMap() ?? {},
+      'attachments':
+          attachments?.map((attachment) => attachment.toMap()).toList() ?? [],
       'createdAt': createdAt,
       'updatedAt': updatedAt
     };
   }
 
-  factory StoreModel.fromMap(Map<String, dynamic> map) {
+  factory StoreModel.fromMap(dynamic map) {
     return StoreModel(
       id: map['id'],
       name: map['name'],
       phone: map['phone'],
-      address: AddressModel.fromMap(map['address']),
-      company: CompanyModel.fromMap(map['company']),
+      description: map['description'],
+      address:
+          map['address'] != null ? AddressModel.fromMap(map['address']) : null,
+      company:
+          map['company'] != null ? CompanyModel.fromMap(map['company']) : null,
+      attachments: map['attachement'] != null
+          ? (map['attachement'] as List)
+              .map((attachment) => StoreAttachement.fromMap(attachment))
+              .toList()
+          : [],
       createdAt: map['createdAt'],
       updatedAt: map['updatedAt'],
     );

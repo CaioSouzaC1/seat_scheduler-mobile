@@ -6,10 +6,10 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import '../pages/perfil_page.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
-  _MainScreenState createState() => _MainScreenState();
+  State createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
@@ -36,20 +36,20 @@ class _MainScreenState extends State<MainScreen> {
         onTap: _onItemTapped,
         items: [
           SalomonBottomBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
+            icon: const Icon(Icons.home),
+            title: const Text('Home'),
             selectedColor: Colors.blue[50],
             unselectedColor: Colors.red[200],
           ),
           SalomonBottomBarItem(
-            icon: Icon(Icons.event_available_outlined),
-            title: Text('Reservas'),
+            icon: const Icon(Icons.event_available_outlined),
+            title: const Text('Reservas'),
             selectedColor: Colors.blue[50],
             unselectedColor: Colors.red[200],
           ),
           SalomonBottomBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Perfil'),
+            icon: const Icon(Icons.person),
+            title: const Text('Perfil'),
             selectedColor: Colors.blue[50],
             unselectedColor: Colors.red[200],
           ),

@@ -13,7 +13,7 @@ class StorePage extends StatefulWidget {
 
 class _StorePageState extends State<StorePage> {
   final StoreRepository storeRepository = StoreRepositoryImpl();
-  StoreModel? _store;
+  List<StoreModel>? _store;
 
   @override
   void initState() {
@@ -24,26 +24,48 @@ class _StorePageState extends State<StorePage> {
   Future<void> _fetchStores() async {
     try {
       final result = await storeRepository.fetchStore();
-      print(result);
+      setState(() {
+        _store = result.data;
+      });
     } catch (e) {
       rethrow;
     }
   }
 
-  void _moveToStoreShow(String storeId) {
-    // Navigator.of(context).pushNamed('/store', arguments: storeId);
+  showStore(String id) {
+    Navigator.of(context).pushNamed('/show_store', arguments: id);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Lojas"),
+        title: const Center(
+          child: Text(
+            "Lojas",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
       body: ListView(
-        children: [
-          CardStore(onTap: _moveToStoreShow),
-        ],
+        children: _store != null
+            ? _store!
+                .map(
+                  (store) => CardStore(
+                    store: store,
+                    showStore: showStore,
+                  ),
+                )
+                .toList()
+            : [
+                const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ],
       ),
     );
   }
