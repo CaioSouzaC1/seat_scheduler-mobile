@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:seat_scheduler_mobile/components/card_booking.dart';
+import 'package:seat_scheduler_mobile/models/booking_model.dart';
+import 'package:seat_scheduler_mobile/repositories/bookings_repository.dart';
+import 'package:seat_scheduler_mobile/repositories/bookings_repository_impl.dart';
 
 class BookingsPage extends StatefulWidget {
   const BookingsPage({super.key});
@@ -8,14 +12,53 @@ class BookingsPage extends StatefulWidget {
 }
 
 class _BookingsPageState extends State<BookingsPage> {
+  final BookingsRepository bookingsRepository = BookingsRepositoryImpl();
+  List<BookingModel>? _booking;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchBookings();
+  }
+
+  Future<void> _fetchBookings() async {
+    try {
+      final result = await bookingsRepository.getBookings();
+      print(result.data);
+      setState(() {
+        _booking = result.data;
+      });
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+  showBooking(String id) {
+    Navigator.of(context).pushNamed('/show_booking', arguments: id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Minhas reservas"),
       ),
-      body: const Center(
-        child: Text('Minhas reservas'),
+      body: ListView(
+        children: _booking != null
+            ? _booking!
+                .map(
+                  (booking) => CardBooking(
+                    booking: booking,
+                    showBooking: showBooking,
+                  ),
+                )
+                .toList()
+            : [
+                const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ],
       ),
     );
   }
