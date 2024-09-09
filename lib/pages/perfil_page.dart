@@ -74,9 +74,16 @@ class _PerfilPageState extends State<PerfilPage> {
           _user != null
               ? buildUserInfoDisplay(_user!.name, "Name", const HomePage())
               : const CircularProgressIndicator(),
-          Expanded(
-            child: buildAbout(_user),
-          ),
+          _user != null
+              ? buildUserInfoDisplay(_user!.phone, "Phone", const HomePage())
+              : const CircularProgressIndicator(),
+          _user != null
+              ? buildUserInfoDisplay(_user!.email, "Email", const HomePage())
+              : const CircularProgressIndicator(),
+          _user != null
+              ? buildUserInfoDisplay(
+                  _formatDate!, "Created at", const HomePage())
+              : const CircularProgressIndicator(),
         ],
       ),
     );
@@ -112,71 +119,18 @@ class _PerfilPageState extends State<PerfilPage> {
                 ),
               ),
               child: Row(
-                children: [
-                  Expanded(
-                      child: TextButton(
-                          onPressed: () {
-                            print('jackpot');
-                          },
-                          child: Text(
-                            getValue,
-                            style: const TextStyle(fontSize: 16, height: 1.4),
-                          ))),
-                  const Icon(
-                    Icons.keyboard_arrow_right,
-                    color: Colors.grey,
-                    size: 40.0,
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      );
-
-  Widget buildAbout(UserModel? user) => Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Tell Us About Yourself',
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey,
-              ),
-            ),
-            const SizedBox(height: 1),
-            Container(
-              width: 350,
-              height: 200,
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: Colors.grey,
-                    width: 1,
-                  ),
-                ),
-              ),
-              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: TextButton(
                       onPressed: () {
-                        //navigateSecondPage();
+                        print('jackpot');
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            user!.phone,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              height: 1.4,
-                            ),
-                          ),
+                      child: Text(
+                        getValue,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          height: 1.4,
                         ),
                       ),
                     ),
@@ -188,19 +142,8 @@ class _PerfilPageState extends State<PerfilPage> {
                   ),
                 ],
               ),
-            ),
+            )
           ],
         ),
       );
-
-  // Refrshes the Page after updating user info.
-  FutureOr onGoBack(dynamic value) {
-    setState(() {});
-  }
-
-  // Handles navigation and prompts refresh.
-  void navigateSecondPage(Widget editForm) {
-    Route route = MaterialPageRoute(builder: (context) => editForm);
-    Navigator.push(context, route).then(onGoBack);
-  }
 }

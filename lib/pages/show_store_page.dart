@@ -36,10 +36,11 @@ class _ShowStorePageState extends State<ShowStorePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: _store != null
-          ? Text(_store!.name)
-          : const CircularProgressIndicator(),
-    ));
+      body: Center(
+        child: _store != null
+            ? Text(_store!.name)
+            : const CircularProgressIndicator(),
+      ),
+    );
   }
 }

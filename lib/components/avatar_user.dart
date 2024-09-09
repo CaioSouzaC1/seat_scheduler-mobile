@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:seat_scheduler_mobile/utils/format_url_local_api_image.dart';
 
 class AvatarUser extends StatelessWidget {
   final String imagePath;
@@ -15,33 +14,34 @@ class AvatarUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = Color.fromRGBO(231, 0, 0, 01);
+    const color = Color.fromRGBO(231, 0, 0, 01);
 
     return Center(
-        child: Stack(children: [
-      buildImage(color),
-      Positioned(
-        child: buildEditIcon(color),
-        right: 4,
-        top: 10,
-      )
-    ]));
+      child: Stack(children: [
+        buildImage(color),
+        Positioned(
+          right: 4,
+          top: 10,
+          child: buildEditIcon(color),
+        )
+      ]),
+    );
   }
 
   // Builds Profile Image
   Widget buildImage(Color color) {
-    final image = imagePath.contains('https://')
-        ? NetworkImage(imagePath)
-        : FileImage(File(imagePath));
+    final image = formatUrlLocalApiImage(imagePath);
 
-    return CircleAvatar(
-      radius: 75,
-      backgroundColor: color,
-      child: CircleAvatar(
-        backgroundImage: image as ImageProvider,
-        radius: 70,
-      ),
-    );
+    return Image.network(image);
+
+    //return CircleAvatar(
+    //  radius: 75,
+    //  backgroundColor: color,
+    //  child: CircleAvatar(
+    //    radius: 70,
+    //    child: Image.network(image,frameBuilder:),
+    //  ),
+    //);
   }
 
   // Builds Edit Icon on Profile Picture

@@ -1,5 +1,5 @@
 String formatUrlLocalApiImage(String? image) {
-  if (image == null) {
+  if (image == null || image == "") {
     return "https://avatarfiles.alphacoders.com/374/374586.png";
   }
 

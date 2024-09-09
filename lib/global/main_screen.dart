@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seat_scheduler_mobile/pages/bookings_page.dart';
+import 'package:seat_scheduler_mobile/pages/store_page.dart';
 import '../pages/home_page.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -18,6 +19,7 @@ class _MainScreenState extends State<MainScreen> {
   static const List<Widget> _pages = <Widget>[
     HomePage(),
     BookingsPage(),
+    StorePage(),
     PerfilPage(),
   ];
 
@@ -44,6 +46,12 @@ class _MainScreenState extends State<MainScreen> {
           SalomonBottomBarItem(
             icon: const Icon(Icons.event_available_outlined),
             title: const Text('Reservas'),
+            selectedColor: Colors.blue[50],
+            unselectedColor: Colors.red[200],
+          ),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.store),
+            title: const Text('Lojas'),
             selectedColor: Colors.blue[50],
             unselectedColor: Colors.red[200],
           ),
