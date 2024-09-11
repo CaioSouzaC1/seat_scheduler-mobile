@@ -21,4 +21,15 @@ class UserRepositoryImpl extends UserRepository {
       throw Exception("Erro trazer informações do perfil");
     }
   }
+
+  @override
+  Future<void> update(String name, String value) async {
+    try {
+      final dio = await createDio();
+
+      await dio.put('/users', data: {name: value});
+    } on DioException catch (e) {
+      throw Exception(e.message);
+    }
+  }
 }

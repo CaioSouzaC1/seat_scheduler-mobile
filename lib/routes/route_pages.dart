@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:seat_scheduler_mobile/components/edit_input.dart';
 import 'package:seat_scheduler_mobile/global/main_screen.dart';
 import 'package:seat_scheduler_mobile/pages/auth_page.dart';
 import 'package:seat_scheduler_mobile/pages/create_account_page.dart';
-import 'package:seat_scheduler_mobile/pages/home_page.dart';
 import 'package:seat_scheduler_mobile/pages/show_booking_page.dart';
 import 'package:seat_scheduler_mobile/pages/store_page.dart';
 
@@ -24,6 +24,14 @@ class RoutePages {
         return MaterialPageRoute(builder: (_) => const PerfilPage());
       case "/store":
         return MaterialPageRoute(builder: (_) => const StorePage());
+      case "/edit_input":
+        if (args is String) {
+          return MaterialPageRoute(
+            builder: (_) => EditPage(
+              inputName: args,
+            ),
+          );
+        }
       case "/show_store":
         if (args is String) {
           return MaterialPageRoute(

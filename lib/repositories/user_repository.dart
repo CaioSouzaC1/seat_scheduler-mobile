@@ -3,4 +3,5 @@ import 'package:seat_scheduler_mobile/models/user_model.dart';
 
 abstract class UserRepository {
   Future<ApiRoot<UserModel>> getMe();
+  Future<void> update(String name, String value);
 }

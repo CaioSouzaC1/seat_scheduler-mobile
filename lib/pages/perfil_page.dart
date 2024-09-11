@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:seat_scheduler_mobile/components/avatar_user.dart';
 import 'package:seat_scheduler_mobile/models/user_model.dart';
-import 'package:seat_scheduler_mobile/pages/home_page.dart';
 import 'package:seat_scheduler_mobile/repositories/user_repository_impl.dart';
 import 'package:seat_scheduler_mobile/utils/format_date.dart';
 
@@ -39,6 +38,19 @@ class _PerfilPageState extends State<PerfilPage> {
     }
   }
 
+  moveToEditPage(String inputName) {
+    Navigator.of(context)
+        .pushNamed('/edit_input', arguments: inputName)
+        .then((_) async {
+      final resultData = await userRepository.getMe();
+
+      setState(() {
+        _user = resultData.data;
+        _formatDate = formatDate(_user!.createdAt);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,17 +84,16 @@ class _PerfilPageState extends State<PerfilPage> {
             ),
           ),
           _user != null
-              ? buildUserInfoDisplay(_user!.name, "Name", const HomePage())
+              ? buildUserInfoDisplay(_user!.name, "Name")
               : const CircularProgressIndicator(),
           _user != null
-              ? buildUserInfoDisplay(_user!.phone, "Phone", const HomePage())
+              ? buildUserInfoDisplay(_user!.phone, "Phone")
               : const CircularProgressIndicator(),
           _user != null
-              ? buildUserInfoDisplay(_user!.email, "Email", const HomePage())
+              ? buildUserInfoDisplay(_user!.email, "Email")
               : const CircularProgressIndicator(),
           _user != null
-              ? buildUserInfoDisplay(
-                  _formatDate!, "Created at", const HomePage())
+              ? buildUserInfoDisplay(_formatDate!, "Created at")
               : const CircularProgressIndicator(),
         ],
       ),
@@ -90,8 +101,7 @@ class _PerfilPageState extends State<PerfilPage> {
   }
 
   // Widget builds the display item with the proper formatting to display the user's info
-  Widget buildUserInfoDisplay(String getValue, String title, Widget editPage) =>
-      Padding(
+  Widget buildUserInfoDisplay(String getValue, String title) => Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,7 +134,7 @@ class _PerfilPageState extends State<PerfilPage> {
                   Expanded(
                     child: TextButton(
                       onPressed: () {
-                        print('jackpot');
+                        moveToEditPage(title.toLowerCase());
                       },
                       child: Text(
                         getValue,

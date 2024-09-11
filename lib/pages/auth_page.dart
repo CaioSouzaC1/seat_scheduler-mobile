@@ -46,12 +46,14 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.black87,
-          title: const Center(
-              child: Text(
+        backgroundColor: Colors.black87,
+        title: const Center(
+          child: Text(
             'Fazer Login',
             style: TextStyle(color: Colors.white),
-          ))),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -59,15 +61,15 @@ class _AuthPageState extends State<AuthPage> {
           child: Column(
             children: [
               TextFormField(
-                  controller: emailEC,
-                  validator: (value) {
-                    return (value == null || value.isEmpty)
-                        ? "Email obrigatorio"
-                        : null;
-                  },
-                  decoration: const InputDecoration(
-                      labelText: 'Email',
-                      border: OutlineInputBorder(),
+                controller: emailEC,
+                validator: (value) {
+                  return (value == null || value.isEmpty)
+                      ? "Email obrigatorio"
+                      : null;
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.email),
                 ),
               ),
@@ -95,43 +97,42 @@ class _AuthPageState extends State<AuthPage> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                onPressed: () async {
-                  final valid = formKey.currentState?.validate() ?? false;
-                  if (valid) {
-                    try {
-                      setState(() {
-                        loading = true;
-                      });
-                      final result = await loginRepository.makeLogin(
-                          login: LoginModel(
-                              email: emailEC.text, password: passwordEC.text));
+                      onPressed: () async {
+                        final valid = formKey.currentState?.validate() ?? false;
+                        if (valid) {
+                          try {
+                            setState(() {
+                              loading = true;
+                            });
+                            final result = await loginRepository.makeLogin(
+                                login: LoginModel(
+                                    email: emailEC.text,
+                                    password: passwordEC.text));
 
-                      setState(() {
-                        loading = false;
-                        setTokenInStorage(result.token as String);
-                        moveToHomePage(result.data);
+                            setState(() {
+                              loading = false;
+                              setTokenInStorage(result.token as String);
+                              moveToHomePage(result.data);
 
-                        Fluttertoast.showToast(
-                            msg: "Logado",
-                            gravity: ToastGravity.TOP,
-                            fontSize: 18);
-                      });
-                    } catch (e) {
-                      setState(() {
-                        loading = false;
-                      });
-                      Fluttertoast.showToast(
-                          msg: "Email ou senha invalida",
-                          gravity: ToastGravity.TOP,
-                          fontSize: 18);
-                    }
-                  }
-                },
-                
-                style: ElevatedButton.styleFrom(
-                  
+                              Fluttertoast.showToast(
+                                  msg: "Logado",
+                                  gravity: ToastGravity.TOP,
+                                  fontSize: 18);
+                            });
+                          } catch (e) {
+                            setState(() {
+                              loading = false;
+                            });
+                            Fluttertoast.showToast(
+                                msg: "Email ou senha invalida",
+                                gravity: ToastGravity.TOP,
+                                fontSize: 18);
+                          }
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(16),
-                    textStyle: const TextStyle(
+                        textStyle: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
@@ -139,19 +140,19 @@ class _AuthPageState extends State<AuthPage> {
                           borderRadius: BorderRadius.all(Radius.circular(8)),
                         ),
                       ),
-                child: const Text("Login"),
+                      child: const Text("Login"),
                     ),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
-                    child: 
-              ElevatedButton(
-                  onPressed: () async {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CreateAccountPage()));
-                  },
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const CreateAccountPage()));
+                      },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(16),
                         textStyle: const TextStyle(

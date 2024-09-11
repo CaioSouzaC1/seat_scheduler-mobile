@@ -32,16 +32,14 @@ class AvatarUser extends StatelessWidget {
   Widget buildImage(Color color) {
     final image = formatUrlLocalApiImage(imagePath);
 
-    return Image.network(image);
-
-    //return CircleAvatar(
-    //  radius: 75,
-    //  backgroundColor: color,
-    //  child: CircleAvatar(
-    //    radius: 70,
-    //    child: Image.network(image,frameBuilder:),
-    //  ),
-    //);
+    return CircleAvatar(
+      radius: 75,
+      backgroundColor: color,
+      child: CircleAvatar(
+        radius: 70,
+        backgroundImage: NetworkImage(image),
+      ),
+    );
   }
 
   // Builds Edit Icon on Profile Picture
