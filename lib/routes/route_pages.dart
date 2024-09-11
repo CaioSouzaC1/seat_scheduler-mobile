@@ -3,6 +3,7 @@ import 'package:seat_scheduler_mobile/global/main_screen.dart';
 import 'package:seat_scheduler_mobile/pages/auth_page.dart';
 import 'package:seat_scheduler_mobile/pages/create_account_page.dart';
 import 'package:seat_scheduler_mobile/pages/home_page.dart';
+import 'package:seat_scheduler_mobile/pages/show_booking_page.dart';
 import 'package:seat_scheduler_mobile/pages/store_page.dart';
 
 import '../pages/perfil_page.dart';
@@ -27,6 +28,11 @@ class RoutePages {
         if (args is String) {
           return MaterialPageRoute(
               builder: (_) => ShowStorePage(storeId: args));
+        }
+      case "/show_booking":
+        if (args is String) {
+          return MaterialPageRoute(
+              builder: (_) => ShowBookingPage(bookingId: args));
         }
     }
 
