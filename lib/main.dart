@@ -76,7 +76,7 @@ class _MainState extends State<Main> {
           ),
           useMaterial3: true,
         ),
-        home: isToken ? const MainScreen() : const AuthPage(),
+        home: isToken ? const MainScreen(selectIndex: 0) : const AuthPage(),
         onGenerateRoute: RoutePages.generateRoute);
   }
 }

@@ -7,7 +7,11 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import '../pages/perfil_page.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final int selectIndex;
+  const MainScreen({
+    super.key,
+    required this.selectIndex,
+  });
 
   @override
   State createState() => _MainScreenState();
@@ -22,6 +26,12 @@ class _MainScreenState extends State<MainScreen> {
     StorePage(),
     PerfilPage(),
   ];
+
+  @override
+  void initState() {
+    _selectedIndex = widget.selectIndex;
+    super.initState();
+  }
 
   void _onItemTapped(int index) {
     setState(() {

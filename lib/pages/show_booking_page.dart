@@ -44,7 +44,7 @@ class _ShowBookingPageState extends State<ShowBookingPage> {
           children: [
             Text(
               'Reserva para: ${_booking?.reservedDate}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -68,7 +68,7 @@ class _ShowBookingPageState extends State<ShowBookingPage> {
                             const SizedBox(
                               width: 4,
                             ),
-                            Text(
+                            const Text(
                               'Ver Loja',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 12),
@@ -87,9 +87,9 @@ class _ShowBookingPageState extends State<ShowBookingPage> {
                             const SizedBox(
                               width: 4,
                             ),
-                            Text(
+                            const Text(
                               '-',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -113,14 +113,14 @@ class _ShowBookingPageState extends State<ShowBookingPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
+                const Text(
                   '#',
                   style: TextStyle(fontSize: 10),
                 ),
                 _booking != null
                     ? Text(
                         _booking!.id,
-                        style: TextStyle(fontSize: 10),
+                        style: const TextStyle(fontSize: 10),
                       )
                     : const CircularProgressIndicator()
               ],

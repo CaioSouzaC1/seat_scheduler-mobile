@@ -42,12 +42,7 @@ class _PerfilPageState extends State<PerfilPage> {
     Navigator.of(context)
         .pushNamed('/edit_input', arguments: inputName)
         .then((_) async {
-      final resultData = await userRepository.getMe();
-
-      setState(() {
-        _user = resultData.data;
-        _formatDate = formatDate(_user!.createdAt);
-      });
+      setState(() {});
     });
   }
 
@@ -100,7 +95,6 @@ class _PerfilPageState extends State<PerfilPage> {
     );
   }
 
-  // Widget builds the display item with the proper formatting to display the user's info
   Widget buildUserInfoDisplay(String getValue, String title) => Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Column(

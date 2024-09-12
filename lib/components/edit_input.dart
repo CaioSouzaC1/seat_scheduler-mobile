@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:seat_scheduler_mobile/repositories/user_repository_impl.dart';
 
 import '../repositories/user_repository.dart';
@@ -21,6 +22,7 @@ class _EditPageState extends State<EditPage> {
 
   @override
   void dispose() {
+    textEC.dispose();
     super.dispose();
   }
 
@@ -56,16 +58,38 @@ class _EditPageState extends State<EditPage> {
                     ),
                   ),
                 ),
-                Column(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        sendRequest(widget.inputName, textEC.text);
-                        Navigator.pop(context, true);
-                      },
-                      child: const Text("Send"),
+                const SizedBox(
+                  height: 16,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    final valid = formKey.currentState?.validate() ?? false;
+
+                    if (valid) {
+                      sendRequest(widget.inputName, textEC.text);
+                      Navigator.of(context).pushReplacementNamed(
+                        '/home',
+                        arguments: 3,
+                      );
+                      return;
+                    }
+
+                    Fluttertoast.showToast(
+                        msg: "Tipo de dado invalido",
+                        gravity: ToastGravity.TOP,
+                        fontSize: 18);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(16),
+                    textStyle: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                    ),
+                  ),
+                  child: const Text("Send"),
                 ),
               ],
             ),

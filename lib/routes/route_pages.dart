@@ -15,7 +15,11 @@ class RoutePages {
 
     switch (settings.name) {
       case '/home':
-        return MaterialPageRoute(builder: (_) => const MainScreen());
+        if (args is int) {
+          return MaterialPageRoute(
+            builder: (_) => MainScreen(selectIndex: args),
+          );
+        }
       case '/auth':
         return MaterialPageRoute(builder: (_) => const AuthPage());
       case "/create_accout":
