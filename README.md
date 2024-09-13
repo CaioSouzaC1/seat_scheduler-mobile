@@ -1,16 +1,31 @@
-# seat_scheduler_mobile
+# Seat Scheduler App
 
-A new Flutter project.
+**Seat Scheduler App** é o aplicativo móvel desenvolvido em **Flutter** e **Dart** que permite aos usuários visualizar e gerenciar suas reservas em restaurantes. Com uma interface intuitiva, os usuários podem explorar lojas, reservar mesas, visualizar suas reservas e editar informações de perfil diretamente no app.
 
-## Getting Started
+## Tecnologias Utilizadas
+- **Flutter** - Framework para construção de aplicativos multiplataforma.
+- **Dart** - Linguagem de programação moderna e eficiente.
+- **Salomon Bottom Bar** - Para navegação prática e amigável.
+  
+## Funcionalidades
+- **Visualizar Lojas**: Explore todas as lojas disponíveis para realizar reservas.
+- **Marcar Reservas**: Escolha a loja e a mesa, e reserve no horário desejado.
+- **Ver Reservas**: Acompanhe todas as suas reservas feitas diretamente pelo app.
+- **Perfil do Usuário**: Veja e edite suas informações de perfil, como nome, e-mail e senha.
+- **Alterar Dados**: Atualize seus dados de forma rápida e fácil, diretamente no app.
 
-This project is a starting point for a Flutter application.
+## Estrutura do App
+- **Home**: Lista de lojas disponíveis para realizar reservas.
+- **Reservas**: Visão completa das reservas feitas, com opções de cancelamento.
+- **Perfil**: Informações do usuário com opção para editar dados.
 
-A few resources to get you started if this is your first Flutter project:
+## Imagens do Aplicativo
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Página de Lojas
+![Stores](public/readme/stores.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Página de Reservas
+![Bookings](public/readme/bookings.png)
+
+### Perfil do Usuário
+![Profile](public/readme/profile.png)
