@@ -86,7 +86,7 @@ class _ShowStorePageState extends State<ShowStorePage> {
               ? buildUserInfoDisplay(
                   _store!.address!.neighborhood, "Neighborhood")
               : const CircularProgressIndicator(),
-          _store!.address!.complement != null
+          _store != null && _store!.address!.complement != null
               ? buildUserInfoDisplay(_store!.address!.complement, "Complement")
               : const SizedBox(
                   height: 0,

@@ -24,12 +24,10 @@ class _BookingsPageState extends State<BookingsPage> {
   Future<void> _fetchBookings() async {
     try {
       final result = await bookingsRepository.getBookings();
-      print(result.data);
       setState(() {
         _booking = result.data;
       });
     } catch (e) {
-      print(e);
       rethrow;
     }
   }
