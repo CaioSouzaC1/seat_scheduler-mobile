@@ -24,32 +24,48 @@ class _CardStoreState extends State<CardStore> {
         widget.showStore(widget.store.id);
       },
       child: Card(
+        color: Colors.red,
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Column(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                formatUrlLocalApiImage(widget.store.attachments != []
-                    ? widget.store.attachments![0].imagePath
-                    : ""),
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                widget.store.name,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+              CircleAvatar(
+                radius: 27,
+                backgroundImage: NetworkImage(
+                  formatUrlLocalApiImage(widget.store.attachments != []
+                      ? widget.store.attachments![0].imagePath
+                      : ""),
                 ),
               ),
-              Text(
-                widget.store.description ?? "",
-                style: const TextStyle(
-                  color: Colors.black,
-                ),
+              Column(
+                children: [
+                  Text(
+                    widget.store.name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    widget.store.description ?? "",
+                  ),
+                ],
+              ),
+              const Column(
+                children: [
+                  Text(
+                    "Evaluation",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "3/10",
+                  ),
+                ],
               ),
             ],
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seat_scheduler_mobile/models/booking_model.dart';
-import 'package:seat_scheduler_mobile/utils/format_url_local_api_image.dart';
+import 'package:seat_scheduler_mobile/utils/format_date.dart';
 
 class CardBooking extends StatefulWidget {
   final BookingModel booking;
@@ -32,7 +32,7 @@ class _CardBookingState extends State<CardBooking> {
                 Row(
                   children: [
                     Text(
-                      widget.booking.reservedDate,
+                      formatDate(widget.booking.reservedDate),
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -41,9 +41,9 @@ class _CardBookingState extends State<CardBooking> {
                     const SizedBox(
                       width: 4,
                     ),
-                    Text(
+                    const Text(
                       '-',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
