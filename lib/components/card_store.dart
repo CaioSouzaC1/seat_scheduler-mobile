@@ -27,47 +27,51 @@ class _CardStoreState extends State<CardStore> {
         color: Colors.red,
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CircleAvatar(
-                radius: 27,
-                backgroundImage: NetworkImage(
-                  formatUrlLocalApiImage(widget.store.attachments != []
-                      ? widget.store.attachments![0].imagePath
-                      : ""),
+          child: SingleChildScrollView(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: 27,
+                  backgroundImage: NetworkImage(
+                    formatUrlLocalApiImage(widget.store.attachments != []
+                        ? widget.store.attachments![0].imagePath
+                        : ""),
+                  ),
                 ),
-              ),
-              Column(
-                children: [
-                  Text(
-                    widget.store.name,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                Column(
+                  children: [
+                    Text(
+                      widget.store.name,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  Text(
-                    widget.store.description ?? "",
-                  ),
-                ],
-              ),
-              const Column(
-                children: [
-                  Text(
-                    "Evaluation",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      widget.store.description ?? "",
                     ),
-                  ),
-                  Text(
-                    "3/10",
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+                Column(
+                  children: [
+                    const Text(
+                      "Evaluation",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      widget.store.evaluaion != null
+                          ? "${widget.store.evaluaion!.note}/10"
+                          : "3/10",
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

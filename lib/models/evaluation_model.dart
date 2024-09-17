@@ -5,7 +5,7 @@ import 'package:seat_scheduler_mobile/models/user_model.dart';
 
 class EvaluationModel {
   final String id;
-  final String note;
+  final int note;
   final String description;
   final String userId;
   final String storeId;

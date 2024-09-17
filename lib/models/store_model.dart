@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:seat_scheduler_mobile/models/address_model.dart';
 import 'package:seat_scheduler_mobile/models/company_model.dart';
+import 'package:seat_scheduler_mobile/models/evaluation_model.dart';
 import 'package:seat_scheduler_mobile/models/store_attachement_model.dart';
 
 class StoreModel {
@@ -12,19 +13,22 @@ class StoreModel {
   AddressModel? address;
   CompanyModel? company;
   List<StoreAttachement>? attachments;
+  EvaluationModel? evaluaion;
   final String createdAt;
   final String updatedAt;
 
-  StoreModel(
-      {required this.id,
-      required this.name,
-      required this.phone,
-      this.description,
-      this.address,
-      this.company,
-      this.attachments,
-      required this.createdAt,
-      required this.updatedAt});
+  StoreModel({
+    required this.id,
+    required this.name,
+    required this.phone,
+    this.description,
+    this.address,
+    this.company,
+    this.attachments,
+    this.evaluaion,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -34,6 +38,7 @@ class StoreModel {
       'description': description ?? "",
       'address': address?.toMap() ?? {},
       'company': company?.toMap() ?? {},
+      'evaluation': evaluaion?.toMap() ?? {},
       'attachments':
           attachments?.map((attachment) => attachment.toMap()).toList() ?? [],
       'createdAt': createdAt,
@@ -56,6 +61,9 @@ class StoreModel {
               .map((attachment) => StoreAttachement.fromMap(attachment))
               .toList()
           : [],
+      evaluaion: map['evaluation'] != null
+          ? EvaluationModel.fromMap(map['evaluation'])
+          : null,
       createdAt: map['createdAt'],
       updatedAt: map['updatedAt'],
     );
