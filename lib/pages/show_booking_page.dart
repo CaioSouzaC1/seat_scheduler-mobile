@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:seat_scheduler_mobile/models/booking_model.dart';
 import 'package:seat_scheduler_mobile/repositories/bookings_repository.dart';
-import 'package:seat_scheduler_mobile/repositories/bookings_repository_impl.dart';
+
+import '../repositories/bookings_repository.impl.dart';
 
 class ShowBookingPage extends StatefulWidget {
   final String bookingId;

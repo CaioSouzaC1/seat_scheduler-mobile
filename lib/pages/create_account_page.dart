@@ -3,9 +3,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:seat_scheduler_mobile/models/create_account_model.dart';
 import 'package:seat_scheduler_mobile/models/user_model.dart';
 import 'package:seat_scheduler_mobile/repositories/create_account_repository.dart';
-import 'package:seat_scheduler_mobile/repositories/create_account_repository_impl.dart';
 import 'package:seat_scheduler_mobile/repositories/local_storage_repository.dart';
-import 'package:seat_scheduler_mobile/repositories/local_storage_repository_impl.dart';
+
+import '../repositories/create_account_repository.impl.dart';
+import '../repositories/local_storage_repository.impl.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});

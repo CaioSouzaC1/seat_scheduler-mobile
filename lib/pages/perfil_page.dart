@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:seat_scheduler_mobile/components/avatar_user.dart';
 import 'package:seat_scheduler_mobile/models/user_model.dart';
-import 'package:seat_scheduler_mobile/repositories/user_repository_impl.dart';
 import 'package:seat_scheduler_mobile/utils/format_date.dart';
 
 import '../repositories/user_repository.dart';
+import '../repositories/user_repository.impl.dart';
 
 class PerfilPage extends StatefulWidget {
   const PerfilPage({super.key});

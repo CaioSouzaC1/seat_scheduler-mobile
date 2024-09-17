@@ -4,9 +4,10 @@ import 'package:seat_scheduler_mobile/models/login_model.dart';
 import 'package:seat_scheduler_mobile/models/user_model.dart';
 import 'package:seat_scheduler_mobile/pages/create_account_page.dart';
 import 'package:seat_scheduler_mobile/repositories/local_storage_repository.dart';
-import 'package:seat_scheduler_mobile/repositories/local_storage_repository_impl.dart';
 import 'package:seat_scheduler_mobile/repositories/login_repository.dart';
-import 'package:seat_scheduler_mobile/repositories/login_repository_impl.dart';
+
+import '../repositories/local_storage_repository.impl.dart';
+import '../repositories/login_repository.impl.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

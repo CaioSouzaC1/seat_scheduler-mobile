@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:seat_scheduler_mobile/models/store_model.dart';
-import 'package:seat_scheduler_mobile/repositories/store_repository_impl.dart';
 import 'package:seat_scheduler_mobile/utils/format_url_local_api_image.dart';
 
 import '../repositories/store_repository.dart';
+import '../repositories/store_repository.impl.dart';
 
 class ShowStorePage extends StatefulWidget {
   final String storeId;

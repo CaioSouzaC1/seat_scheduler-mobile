@@ -3,7 +3,8 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:seat_scheduler_mobile/components/card_store.dart';
 import 'package:seat_scheduler_mobile/models/store_model.dart';
 import 'package:seat_scheduler_mobile/repositories/store_repository.dart';
-import 'package:seat_scheduler_mobile/repositories/store_repository_impl.dart';
+
+import '../repositories/store_repository.impl.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});

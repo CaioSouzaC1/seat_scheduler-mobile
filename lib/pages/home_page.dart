@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seat_scheduler_mobile/repositories/local_storage_repository.dart';
-import 'package:seat_scheduler_mobile/repositories/local_storage_repository_impl.dart';
+
+import '../repositories/local_storage_repository.impl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,7 +18,6 @@ class _HomePageState extends State<HomePage> {
     localStorageRepository.deleteTokenFromLocalStorage();
     Navigator.of(context).pushReplacementNamed('/auth');
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +67,8 @@ class _HomePageState extends State<HomePage> {
                   'assets/imgs/table1.jpg',
                   width: 300,
                   height: 200,
-                  fit: BoxFit.cover, 
+                  fit: BoxFit.cover,
                 ),
-
               ],
             ),
           ),
