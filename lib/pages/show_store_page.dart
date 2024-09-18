@@ -45,8 +45,10 @@ class _ShowStorePageState extends State<ShowStorePage> {
               children: <Widget>[
                 Opacity(
                   opacity: 0.2,
-                  child: Image.network(formatUrlLocalApiImage(
-                      _store!.attachments![0].imagePath)),
+                  child: (_store != null && _store!.attachments != null)
+                      ? Image.network(formatUrlLocalApiImage(
+                          _store!.attachments![0].imagePath))
+                      : const CircularProgressIndicator(),
                 ),
                 Positioned(
                   top: 30,
@@ -70,7 +72,7 @@ class _ShowStorePageState extends State<ShowStorePage> {
                         Icons.location_pin,
                         color: Colors.white,
                       ),
-                      _store!.address != null
+                      (_store != null && _store!.address != null)
                           ? Text(
                               _store!.address!.street,
                               style: const TextStyle(
@@ -142,6 +144,68 @@ class _ShowStorePageState extends State<ShowStorePage> {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "Menu",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(213, 0, 0, 1),
+                fontSize: 30,
+              ),
+            ),
+            ListView(
+              shrinkWrap: true,
+              children: (_store != null && _store!.menu != null)
+                  ? _store!.menu!
+                      .map(
+                        (menu) => Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                const Icon(
+                                  Icons.dining_outlined,
+                                  color: Color.fromRGBO(213, 0, 0, 1),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  menu.name,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              menu.price.toString(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                      .toList()
+                  : [const CircularProgressIndicator()],
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.all(16),
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                ),
+              ),
+              onPressed: () {},
+              child: const Text("Booking"),
             ),
           ],
         ),

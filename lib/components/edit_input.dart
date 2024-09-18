@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:seat_scheduler_mobile/repositories/user_repository_impl.dart';
 
 import '../repositories/user_repository.dart';
+import '../repositories/user_repository.impl.dart';
 
 class EditPage extends StatefulWidget {
   final String inputName;

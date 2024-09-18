@@ -3,8 +3,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:seat_scheduler_mobile/global/main_screen.dart';
 import 'package:seat_scheduler_mobile/pages/auth_page.dart';
 import 'package:seat_scheduler_mobile/repositories/login_repository.dart';
-import 'package:seat_scheduler_mobile/repositories/login_repository_impl.dart';
 import 'package:seat_scheduler_mobile/routes/route_pages.dart';
+
+import 'repositories/login_repository.impl.dart';
 
 void main() async {
   await GetStorage.init();

@@ -70,36 +70,5 @@ class _StorePageState extends State<StorePage> {
         ),
       ),
     );
-
-    //return Scaffold(
-    //  appBar: AppBar(
-    //    title: const Center(
-    //      child: Text(
-    //        "Lojas",
-    //        style: TextStyle(
-    //          color: Colors.white,
-    //          fontSize: 30,
-    //          fontWeight: FontWeight.bold,
-    //        ),
-    //      ),
-    //    ),
-    //  ),
-    //  body: ListView(
-    //    children: _store != null
-    //        ? _store!
-    //            .map(
-    //              (store) => CardStore(
-    //                store: store,
-    //                showStore: showStore,
-    //              ),
-    //            )
-    //            .toList()
-    //        : [
-    //            const Center(
-    //              child: CircularProgressIndicator(),
-    //            ),
-    //          ],
-    //  ),
-    //);
   }
 }

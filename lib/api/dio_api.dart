@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:seat_scheduler_mobile/repositories/local_storage_repository.dart';
-import 'package:seat_scheduler_mobile/repositories/local_storage_repository_impl.dart';
+
+import '../repositories/local_storage_repository.impl.dart';
 
 final LocalStorageRepository localStorageRepository =
     LocalStorageRepositoryImpl();
