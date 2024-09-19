@@ -137,7 +137,7 @@ class _ShowStorePageState extends State<ShowStorePage> {
                           ),
                           SizedBox(width: 5),
                           Text(
-                            "6:00PM - 2:00PM",
+                            "18:00 - 02:00",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color.fromRGBO(213, 0, 0, 1),
@@ -236,7 +236,7 @@ class _ShowStorePageState extends State<ShowStorePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Text(
-                  'Choose a table',
+                  'Escolha uma mesa',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -249,7 +249,7 @@ class _ShowStorePageState extends State<ShowStorePage> {
                     ? DropdownButton(
                         hint: _selectItem == null
                             ? const Text(
-                                "Number of table",
+                                "Número  das mesas",
                                 style: TextStyle(color: Colors.white),
                               )
                             : Text(
@@ -273,7 +273,7 @@ class _ShowStorePageState extends State<ShowStorePage> {
                       )
                     : const DropdownMenuItem(
                         value: 0,
-                        child: Text("Don't found tables"),
+                        child: Text("Nenhuma mesa encontrada"),
                       ),
               ],
             ),
@@ -294,7 +294,7 @@ class _ShowStorePageState extends State<ShowStorePage> {
               onPressed: () {
                 registerBooking();
               },
-              child: const Text("Booking"),
+              child: const Text("Agendar"),
             ),
           ],
         ),
