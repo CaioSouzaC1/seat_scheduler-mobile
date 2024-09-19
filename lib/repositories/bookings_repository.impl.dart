@@ -40,4 +40,15 @@ class BookingsRepositoryImpl extends BookingsRepository {
       throw Exception("Erro ao trazer as reservas");
     }
   }
+
+  @override
+  Future<void> resgiterBooking({required BookingRequest booking}) async {
+    try {
+      final dio = await createDio();
+      await dio.post('/books', data: booking.toMap());
+    } on DioException catch (e) {
+      log(e.message ?? "");
+      throw Exception("Error ao reservar");
+    }
+  }
 }

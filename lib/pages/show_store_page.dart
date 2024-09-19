@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:seat_scheduler_mobile/models/booking_model.dart';
 import 'package:seat_scheduler_mobile/models/store_model.dart';
+import 'package:seat_scheduler_mobile/repositories/bookings_repository.dart';
+import 'package:seat_scheduler_mobile/repositories/bookings_repository.impl.dart';
+import 'package:seat_scheduler_mobile/utils/format_date.dart';
 import 'package:seat_scheduler_mobile/utils/format_url_local_api_image.dart';
 
 import '../repositories/store_repository.dart';
@@ -19,7 +24,10 @@ class ShowStorePage extends StatefulWidget {
 
 class _ShowStorePageState extends State<ShowStorePage> {
   final StoreRepository storeRepository = StoreRepositoryImpl();
+  final BookingsRepository bookingsRepository = BookingsRepositoryImpl();
   StoreModel? _store;
+  String? _selectItem;
+  String? _tableId;
 
   @override
   void initState() {
@@ -32,6 +40,26 @@ class _ShowStorePageState extends State<ShowStorePage> {
     setState(() {
       _store = result.data;
     });
+  }
+
+  void registerBooking() async {
+    if (_tableId != null) {
+      await bookingsRepository.resgiterBooking(
+        booking: BookingRequest(
+            tableId: _tableId!,
+            reservedDate: formatDate(DateTime.now().toString()),
+            storeId: _store!.id),
+      );
+
+      Fluttertoast.showToast(
+          msg: "Await for answer the store",
+          gravity: ToastGravity.TOP,
+          fontSize: 18);
+      return;
+    }
+
+    Fluttertoast.showToast(
+        msg: "Choose a table", gravity: ToastGravity.TOP, fontSize: 18);
   }
 
   @override
@@ -180,18 +208,77 @@ class _ShowStorePageState extends State<ShowStorePage> {
                                 ),
                               ],
                             ),
-                            Text(
-                              menu.price.toString(),
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  menu.price.toString(),
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                const Icon(
+                                  Icons.attach_money,
+                                  color: Color.fromRGBO(213, 0, 0, 1),
+                                ),
+                              ],
                             )
                           ],
                         ),
                       )
                       .toList()
                   : [const CircularProgressIndicator()],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  'Choose a table',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                (_store != null && _store!.table != null)
+                    ? DropdownButton(
+                        hint: _selectItem == null
+                            ? const Text(
+                                "Number of table",
+                                style: TextStyle(color: Colors.white),
+                              )
+                            : Text(
+                                _selectItem!,
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                        items: _store!.table
+                            ?.map(
+                              (table) => DropdownMenuItem(
+                                value: table,
+                                child: Text(table.number.toString()),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _selectItem = value!.number.toString();
+                            _tableId = value.id;
+                          });
+                        },
+                      )
+                    : const DropdownMenuItem(
+                        value: 0,
+                        child: Text("Don't found tables"),
+                      ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -204,7 +291,9 @@ class _ShowStorePageState extends State<ShowStorePage> {
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                registerBooking();
+              },
               child: const Text("Booking"),
             ),
           ],

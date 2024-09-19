@@ -5,6 +5,7 @@ import 'package:seat_scheduler_mobile/models/company_model.dart';
 import 'package:seat_scheduler_mobile/models/evaluation_model.dart';
 import 'package:seat_scheduler_mobile/models/menu_item_model.dart';
 import 'package:seat_scheduler_mobile/models/store_attachement_model.dart';
+import 'package:seat_scheduler_mobile/models/table_model.dart';
 
 class StoreModel {
   final String id;
@@ -16,6 +17,7 @@ class StoreModel {
   List<StoreAttachement>? attachments;
   EvaluationModel? evaluaion;
   List<MenuItemModel>? menu;
+  List<TableModel>? table;
   final String createdAt;
   final String updatedAt;
 
@@ -29,6 +31,7 @@ class StoreModel {
     this.attachments,
     this.evaluaion,
     this.menu,
+    this.table,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -45,6 +48,7 @@ class StoreModel {
       'evaluation': evaluaion?.toMap() ?? {},
       'attachments':
           attachments?.map((attachment) => attachment.toMap()).toList() ?? [],
+      'table': table?.map((table) => table.toMap()).toList() ?? [],
       'createdAt': createdAt,
       'updatedAt': updatedAt
     };
@@ -71,6 +75,11 @@ class StoreModel {
       menu: map['menuItem'] != null
           ? (map['menuItem'] as List)
               .map((menu) => MenuItemModel.fromMap(menu))
+              .toList()
+          : [],
+      table: map['tables'] != null
+          ? (map['tables'] as List)
+              .map((table) => TableModel.fromMap(table))
               .toList()
           : [],
       createdAt: map['createdAt'],

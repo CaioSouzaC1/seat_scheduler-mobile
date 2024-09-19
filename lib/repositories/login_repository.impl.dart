@@ -17,7 +17,9 @@ class LoginRepositoryImpl implements LoginRepository {
       final result = await dio.post('/login', data: login.toMap());
 
       return ApiRoot<UserModel>.fromMap(
-          result.data, (data) => UserModel.fromMap(data['user']));
+        result.data,
+        (data) => UserModel.fromMap(data['user']),
+      );
     } on DioException catch (e) {
       log(e.message ?? '');
       throw Exception('Erro ao logar');

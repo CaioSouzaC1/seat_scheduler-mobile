@@ -70,9 +70,7 @@ class _PerfilPageState extends State<PerfilPage> {
             ),
           ),
           InkWell(
-            onTap: () {
-              print('nice');
-            },
+            onTap: () {},
             child: AvatarUser(
               imagePath: "",
               onPressed: () {},
