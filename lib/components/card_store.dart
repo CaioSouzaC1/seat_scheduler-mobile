@@ -57,7 +57,7 @@ class _CardStoreState extends State<CardStore> {
                 Column(
                   children: [
                     const Text(
-                      "Evaluation",
+                      "Avaliação",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

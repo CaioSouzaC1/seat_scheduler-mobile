@@ -21,11 +21,20 @@
 
 ## Imagens do Aplicativo
 
+### Login
+![Login](docs/login.png)
+
+### Página de home
+![Home](docs/home.png)
+
 ### Página de Lojas
-![Stores](public/readme/stores.png)
+![Stores](docs/stores.png)
 
 ### Página de Reservas
-![Bookings](public/readme/bookings.png)
+![Bookings](docs/bookings.png)
 
 ### Perfil do Usuário
-![Profile](public/readme/profile.png)
+![Profile](docs/user_perfil.png)
+
+### Perfil do menu
+![StoreMenu](docs/store_menu.png)

@@ -249,7 +249,7 @@ class _ShowStorePageState extends State<ShowStorePage> {
                     ? DropdownButton(
                         hint: _selectItem == null
                             ? const Text(
-                                "Número  das mesas",
+                                "Número das mesas",
                                 style: TextStyle(color: Colors.white),
                               )
                             : Text(
